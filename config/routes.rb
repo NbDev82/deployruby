@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'users/index'
-      get 'users/show'
-      get 'users/create'
-      get 'users/update'
-      get 'users/destroy'
+      get 'users' => 'users#index'
+      get 'users/:id' => 'users#show'
+      post 'users/create' => 'users#create'
+      post 'users/update' => 'users#update'
+      delete 'users/:id' => 'users#destroy'
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
