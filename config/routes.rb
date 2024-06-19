@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      get 'users' => 'users#index'
-      get 'users/:id' => 'users#show'
-      post 'users/create' => 'users#create'
-      post 'users/update' => 'users#update'
-      delete 'users/:id' => 'users#destroy'
+      resources :users, only: [:index, :show, :create, :update, :destroy] do
+        collection do
+          get '' => 'users#index'
+          get ':id' => 'users#show'
+          post 'create' => 'users#create'
+          post 'update' => 'users#update'
+          delete ':id' => 'users#destroy'
+        end
+      end
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
